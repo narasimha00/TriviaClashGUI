@@ -8,6 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'com.gradleup.shadow' version '8.3.4'
+    id 'java'
 }
 
 repositories {
@@ -15,13 +17,6 @@ repositories {
     mavenCentral()
 }
 
-jar {
-    manifest {
-        attributes (
-            'Main-Class': 'triviaClash-gui/Main.java'
-        )
-    }
-}
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation libs.junit.jupiter
@@ -41,7 +36,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'triviaclash-gui.Main.java'
+    mainClass = 'triviaClashGui.Main'
 }
 
 tasks.named('test') {
