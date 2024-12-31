@@ -43,6 +43,7 @@ public class MainUI implements UIConstructor {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLayout(null);
         mainFrame.setSize(new Dimension(600, 500));
+        mainFrame.setResizable(false);
         mainFrame.setVisible(true);
 
     } 
