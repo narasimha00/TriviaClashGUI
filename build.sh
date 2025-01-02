@@ -29,11 +29,45 @@ copy_jar() {
     return $(cp "$JAR_FILE_OUTPUT_PATH/app-all.jar" "$DIRS_PATH/TriviaClash-gui.jar"; echo $?)
 }
 
-create_dirs && build_jar && copy_jar
+run() {
+    echo ""
+    echo "STARTING RUN OPERATION..."
+    sh -c "java -jar out/jar/TriviaClash-gui.jar"
+}
 
-echo ""
-if [ ! $(echo $?) ]; then
-    echo " Jar couldn't be generated !! "
-else
-    echo " The jar file can be found in $DIRS_PATH "
-fi
+help() {
+    echo ""
+    echo "The following are the available flags for this script"
+    echo ""
+    echo "-h, --help => Display this help message and exit."
+    echo "-r, --run => Run after the build succeeds."
+    echo ""
+}
+
+build() {
+    echo ""
+    echo "STARTING BUILD !!"
+    create_dirs && build_jar && copy_jar
+    echo ""
+    if [ ! $(echo $?) ]; then
+        echo " Jar couldn't be generated !! "
+        exit
+    else
+        echo " The jar file can be found in $DIRS_PATH "
+    fi
+}
+
+# check the arguments for more options 
+case $@ in 
+    "-h" | "--help")
+        help
+        exit
+        ;;
+    "-r" | "--run")
+        build && run
+        ;;
+    *)
+        build 
+        ;;
+esac
+
