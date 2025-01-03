@@ -20,20 +20,20 @@ public class Game {
         
         MainUI ui = new MainUI();
         ui.construct(); 
-
-        currentPanel.add(ui.getPanel(), "main"); 
+        mainPanel = (JPanel)ui.getPanel();
+        currentPanel.add(mainPanel, "main"); 
         cl = (CardLayout)currentPanel.getLayout();
         cl.show(currentPanel, "main");
         mainFrame.add(currentPanel);
-
     }
 
     private void initializeWindow() {
         mainFrame = new JFrame("Trivia Clash!");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLayout(new CardLayout());
-        mainFrame.setSize(new Dimension(600, 500));
-        mainFrame.setResizable(false);
+        mainFrame.setMinimumSize(new Dimension(600, 500));
+        mainFrame.setMaximumSize(new Dimension(800, 700));
+        mainFrame.setResizable(true);
         mainFrame.setVisible(true);
     } 
 }
